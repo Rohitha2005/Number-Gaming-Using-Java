@@ -1,0 +1,57 @@
+package rohitha;
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class hello {
+
+	public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
+        boolean playAgain = true;
+        int rounds = 0;
+        int totalAttempts = 0;
+
+        System.out.println("Welcome to the Number Guessing Game!");
+
+        while (playAgain) {
+            rounds++;
+            System.out.println("\nRound " + rounds + ":");
+            totalAttempts += playGame(scanner, random);
+            System.out.print("Do you want to play again? (yes/no): ");
+            String userInput = scanner.next().toLowerCase();
+            if (!userInput.equals("yes")) {
+                playAgain = false;
+            }
+        }
+
+        System.out.println("\nGame Over! You played " + rounds + " round(s).");
+        System.out.println("Thanks for playing!");
+    }
+
+    public static int playGame(Scanner scanner, Random random) {
+        int secretNumber = 45;
+        int attempts = 0;
+
+        while (true) {
+            System.out.print("Enter your guess (between 1 and 100): ");
+            int guess = scanner.nextInt();
+            attempts++;
+
+            if (guess < secretNumber) {
+                System.out.println("Too low! Try again.");
+            } else if (guess > secretNumber) {
+                System.out.println("Too high! Try again.");
+            } else {
+                System.out.println("Congratulations! You guessed the number " + secretNumber + " correctly!");
+                System.out.println("It took you " + attempts + " attempts.");
+                break;
+            }
+        }
+
+        return attempts;
+    }
+
+
+
+	}
